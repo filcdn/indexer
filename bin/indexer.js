@@ -1,6 +1,11 @@
 import { ethers } from 'ethers'
 import { createQueryFn } from '../lib/query.js'
-import { migrations, pdpVerifierAbi, onProofSetCreated, onRootsAdded } from '../index.js'
+import {
+  migrations,
+  pdpVerifierAbi,
+  onProofSetCreated,
+  onRootsAdded,
+} from '../index.js'
 
 const {
   GLIF_TOKEN,
@@ -38,13 +43,13 @@ pdpVerifier.on('ProofSetCreated', (setId, owner) => {
   console.log(`${event} ⏳`)
   onProofSetCreated(query, setId, owner)
     .then(() => console.log(`${event} ✅`))
-    .catch(err => console.error(`${event} ❌`, err))
+    .catch((err) => console.error(`${event} ❌`, err))
 })
 
 pdpVerifier.on('RootsAdded', (setId, rootIds) => {
-  const event = `RootsAdded (Set ID="${setId}", Root IDs=[${rootIds.map(id => `"${id}"`).join(', ')})]`
+  const event = `RootsAdded (Set ID="${setId}", Root IDs=[${rootIds.map((id) => `"${id}"`).join(', ')})]`
   console.log(`${event} ⏳`)
   onRootsAdded(query, setId, rootIds)
     .then(() => console.log(`${event} ✅`))
-    .catch(err => console.error(`${event} ❌`, err))
+    .catch((err) => console.error(`${event} ❌`, err))
 })

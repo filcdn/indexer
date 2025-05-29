@@ -5,7 +5,7 @@ import assert from 'node:assert/strict'
 
 const database = new DatabaseSync(':memory:')
 
-test('indexer', async t => {
+test('indexer', async (t) => {
   await database.exec(migrations)
   const query = (sql, params) => {
     database.prepare(sql).run(...params)
