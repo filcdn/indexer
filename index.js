@@ -8,7 +8,7 @@ export const pdpVerifierAbi = [
 export const onProofSetCreated = async (query, setId, owner) =>
   query(
     'INSERT INTO indexer_proof_sets (set_id, owner) VALUES (?, ?) ON CONFLICT DO NOTHING',
-    [setId, owner],
+    [String(setId), owner],
   )
 
 export const onRootsAdded = async (query, setId, rootIds) =>
@@ -21,5 +21,5 @@ export const onRootsAdded = async (query, setId, rootIds) =>
       .join(', ')}
     ON CONFLICT DO NOTHING
   `,
-    rootIds.flatMap((rootId) => [rootId, setId]),
+    rootIds.flatMap((rootId) => [String(rootId), String(setId)]),
   )
