@@ -47,7 +47,7 @@ pdpVerifier.on('ProofSetCreated', (setId, owner) => {
 })
 
 pdpVerifier.on('RootsAdded', (setId, rootIds) => {
-  const event = `RootsAdded (Set ID="${setId}", Root IDs=[${rootIds.map((id) => `"${id}"`).join(', ')})]`
+  const event = `RootsAdded (Set ID="${setId}", Root IDs=[${rootIds.map((id) => `"${id}"`).join(', ')}]`
   console.log(`${event} ⏳`)
   onRootsAdded(query, setId, rootIds)
     .then(() => console.log(`${event} ✅`))
